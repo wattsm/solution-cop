@@ -38,7 +38,6 @@
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition=" Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')" />
   <ItemGroup>
     <EmbeddedResource Include="template-default.fxcop" />
-    <Compile Include="settings.fs" />
     <Compile Include="filters.fs" />
     <Compile Include="project.fs" />
   </ItemGroup>

@@ -44,11 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="list.fs" />
-    <Compile Include="io.fs" />
     <Compile Include="regex.fs" />
-    <Compile Include="xml.fs" />
-    <Compile Include="xpath.fs" />
     <Compile Include="string.fs" />
+    <Compile Include="args.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

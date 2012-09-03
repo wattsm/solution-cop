@@ -1,50 +1,29 @@
 ﻿namespace SolutionCop.VisualStudio
 
 open System
-open SolutionCop.Common.IO
-open SolutionCop.Common.Regex
-open SolutionCop.VisualStudio.Project
+open SolutionCop.Common
 
+[<RequireQualifiedAccess>]
 module Solution = 
 
-    [<Literal>]
-    let SolutionExtension = ".sln"
-
-    type SolutionDescription = {
-        Directory : String;
-        FileName : String;
-        Projects : ProjectDescription list;
+    type Configuration = {
+        Name : String;
+        Platform : String;
+        OutputPath : String;
     }
 
-    //TODO Support other project file types
+    type Project = {
+        FileName : String;
+        Configurations : Configuration list;
+        ReferencePaths : String list;
+    }
 
-    let extractRelativeProjectPaths = 
-        (matches ",(\\s?)\"((.+?)\\.(fsproj|csproj))\"")  
-        >> List.map (group 1)        
+    type Solution = {
+        Directory : String;
+        FileName : String;
+        Projects : Project list;
+    }
 
-    let extractProjectPaths path = 
-
-        if (extension path) <> SolutionExtension then
-            raise (InvalidOperationException ())
-
-        let directory = 
-            folder path
-
-        path
-        |> fileContents
-        |> extractRelativeProjectPaths
-        |> List.map (combine directory)
-
-    let describeSolutionAt path = 
-
-        let name = 
-            fileName path
-
-        let directory = 
-            folder path
-
-        let projects = 
-            extractProjectPaths path
-            |> List.choose parseProjectAt
-
-        { Directory = directory; FileName = name; Projects = projects; }
+    let parse (settings : Args.Settings) = 
+        { Directory = ""; FileName = ""; Projects = []; }
+        

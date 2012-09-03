@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="settings.fs" />
     <Compile Include="program.fs" />
     <None Include="App.config" />
   </ItemGroup>
