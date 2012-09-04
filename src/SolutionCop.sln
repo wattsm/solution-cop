@@ -13,6 +13,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SolutionCop.FxCop", "Soluti
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SolutionCop.Common.Tests", "SolutionCop.Common.Tests\SolutionCop.Common.Tests.fsproj", "{414137EF-2375-4EFE-AD0D-EE9313524DB9}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SolutionCop.VisualStudio.Tests", "SolutionCop.VisualStudio.Tests\SolutionCop.VisualStudio.Tests.fsproj", "{1993A68C-C325-48FA-9047-F238DFCF0624}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,11 +41,16 @@ Global
 		{414137EF-2375-4EFE-AD0D-EE9313524DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{414137EF-2375-4EFE-AD0D-EE9313524DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{414137EF-2375-4EFE-AD0D-EE9313524DB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1993A68C-C325-48FA-9047-F238DFCF0624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1993A68C-C325-48FA-9047-F238DFCF0624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1993A68C-C325-48FA-9047-F238DFCF0624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1993A68C-C325-48FA-9047-F238DFCF0624}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{414137EF-2375-4EFE-AD0D-EE9313524DB9} = {C3CD3EE8-F20D-4C72-A43A-05A9851C8E2F}
+		{1993A68C-C325-48FA-9047-F238DFCF0624} = {C3CD3EE8-F20D-4C72-A43A-05A9851C8E2F}
 	EndGlobalSection
 EndGlobal
