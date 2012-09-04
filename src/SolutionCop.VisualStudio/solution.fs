@@ -6,24 +6,12 @@ open SolutionCop.Common
 [<RequireQualifiedAccess>]
 module Solution = 
 
-    type Configuration = {
-        Name : String;
-        Platform : String;
-        OutputPath : String;
-    }
-
-    type Project = {
-        FileName : String;
-        Configurations : Configuration list;
-        ReferencePaths : String list;
-    }
-
-    type Solution = {
+    type Data = {
         Directory : String;
         FileName : String;
-        Projects : Project list;
+        Projects : Project.Data list;
     }
 
-    let parse (settings : Args.Settings) = 
+    let load settings = 
         { Directory = ""; FileName = ""; Projects = []; }
         

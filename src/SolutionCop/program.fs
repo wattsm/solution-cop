@@ -9,16 +9,22 @@ module Program =
 
     (**
         Usage:
-            solutioncop.exe -sln:"C:\MySolution\MySolution.sln" platform:AnyCPU configuration:Debug -include:"^MySolution\." - exclude:"\.(Tests)\."
+            solutioncop.exe -sln:"C:\MySolution\MySolution.sln" -platform:AnyCPU -configuration:Debug -include:"^MySolution\." - exclude:"\.(Tests)\."
     **)    
 
     [<EntryPoint>]
     let main args = 
 
+        let filters = 
+            Filters.parse args
+
+        let properties = 
+            Properties.parse args
+
         args 
         |> Args.parse
-        |> Solution.parse
-        |> Filters.apply (Filters.parse args)
-        |> Project.generate args
+        |> Solution.load
+        |> Filters.apply filters
+        |> Project.generate properties
 
         0

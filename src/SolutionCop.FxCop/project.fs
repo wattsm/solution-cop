@@ -6,5 +6,5 @@ open SolutionCop.VisualStudio
 [<RequireQualifiedAccess>]
 module Project = 
     
-    let generate (args : string []) (solution : Solution.Solution) =
+    let generate properties solution =
         ()

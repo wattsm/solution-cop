@@ -14,5 +14,5 @@ module Filters =
     let parse (args : string []) = 
         { Includes = []; Excludes = []; }
 
-    let apply (settings : Settings) (solution : Solution.Solution) = 
+    let apply settings solution = 
         solution
