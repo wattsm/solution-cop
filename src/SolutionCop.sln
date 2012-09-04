@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C3CD3EE8
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SolutionCop.FxCop", "SolutionCop.FxCop\SolutionCop.FxCop.fsproj", "{D4D5939F-2525-4E12-999F-7D9FD1DADA30}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SolutionCop.Common.Tests", "SolutionCop.Common.Tests\SolutionCop.Common.Tests.fsproj", "{414137EF-2375-4EFE-AD0D-EE9313524DB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,8 +35,15 @@ Global
 		{D4D5939F-2525-4E12-999F-7D9FD1DADA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4D5939F-2525-4E12-999F-7D9FD1DADA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4D5939F-2525-4E12-999F-7D9FD1DADA30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414137EF-2375-4EFE-AD0D-EE9313524DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414137EF-2375-4EFE-AD0D-EE9313524DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414137EF-2375-4EFE-AD0D-EE9313524DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414137EF-2375-4EFE-AD0D-EE9313524DB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{414137EF-2375-4EFE-AD0D-EE9313524DB9} = {C3CD3EE8-F20D-4C72-A43A-05A9851C8E2F}
 	EndGlobalSection
 EndGlobal
