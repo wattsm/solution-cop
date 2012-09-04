@@ -12,7 +12,7 @@ module Regex =
             Regex.Matches (input, pattern, RegexOptions.IgnoreCase)
             |> List.ofEnumerable<Match>
 
-    let group index (match' : Match) = 
+    let groupAt index (match' : Match) = 
         match'.Groups.[index + 1].Value
             
     let matchesAt pattern indices input = 
