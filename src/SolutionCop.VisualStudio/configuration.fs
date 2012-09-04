@@ -1,6 +1,7 @@
 ﻿namespace SolutionCop.VisualStudio
 
 open System
+open System.Xml
 
 [<RequireQualifiedAccess>]
 module Configuration = 
@@ -11,3 +12,5 @@ module Configuration =
         OutputPath : String;
     }
 
+    let read node = 
+        { Name = ""; Platform = ""; OutputPath = ""; }
