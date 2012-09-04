@@ -46,6 +46,7 @@
     <Compile Include="list.fs" />
     <Compile Include="regex.fs" />
     <Compile Include="string.fs" />
+    <Compile Include="xml.fs" />
     <Compile Include="args.fs" />
   </ItemGroup>
   <PropertyGroup>

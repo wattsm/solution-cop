@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<examples>
+  <example name="configuration-and-platform">
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+      <DebugSymbols>true</DebugSymbols>
+      <DebugType>full</DebugType>
+      <Optimize>false</Optimize>
+      <Tailcalls>false</Tailcalls>
+      <OutputPath>bin\Debug\</OutputPath>
+      <DefineConstants>DEBUG;TRACE</DefineConstants>
+      <WarningLevel>3</WarningLevel>
+      <DocumentationFile>bin\Debug\SolutionCop.Common.XML</DocumentationFile>
+    </PropertyGroup>
+  </example>
+  <example name="configuration-only">
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DebugSymbols>true</DebugSymbols>
+      <DebugType>full</DebugType>
+      <Optimize>false</Optimize>
+      <Tailcalls>false</Tailcalls>
+      <OutputPath>bin\Debug\</OutputPath>
+      <DefineConstants>DEBUG;TRACE</DefineConstants>
+      <WarningLevel>3</WarningLevel>
+      <DocumentationFile>bin\Debug\SolutionCop.Common.XML</DocumentationFile>
+      <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+  </example>
+    <example name="platform-only">
+    <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+      <DebugSymbols>true</DebugSymbols>
+      <DebugType>full</DebugType>
+      <Optimize>false</Optimize>
+      <Tailcalls>false</Tailcalls>
+      <OutputPath>bin\Debug\</OutputPath>
+      <DefineConstants>DEBUG;TRACE</DefineConstants>
+      <WarningLevel>3</WarningLevel>
+      <DocumentationFile>bin\Debug\SolutionCop.Common.XML</DocumentationFile>
+      <ConfigurationName>Debug</ConfigurationName>
+    </PropertyGroup>
+  </example>
+</examples>
