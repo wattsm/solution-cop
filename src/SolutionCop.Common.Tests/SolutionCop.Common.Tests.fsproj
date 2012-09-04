@@ -39,6 +39,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="app.config" />
+    <Compile Include="args.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsUnit.CustomMatchers">
@@ -64,8 +65,6 @@
       <HintPath>..\packages\xunit.1.9.1\lib\net20\xunit.dll</HintPath>
       <Private>True</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\SolutionCop.Common\SolutionCop.Common.fsproj">
       <Name>SolutionCop.Common</Name>
       <Project>{315dd67c-1a2e-4c5b-b95f-6f36f613e55a}</Project>
