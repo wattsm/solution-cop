@@ -73,5 +73,8 @@ module Project =
 
     ///Reads a project from a path on disk
     let load = 
-        contentsOf >> parse >> read
+        contentsOf 
+        >> parse 
+        >> Schema.register 
+        >> read
         
