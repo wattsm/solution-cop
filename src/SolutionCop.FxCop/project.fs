@@ -6,5 +6,5 @@ open SolutionCop.VisualStudio
 [<RequireQualifiedAccess>]
 module Project = 
     
-    let generate properties solution =
+    let generate properties targets =
         ()

@@ -39,6 +39,7 @@
   <ItemGroup>
     <EmbeddedResource Include="template-default.fxcop" />
     <Compile Include="filters.fs" />
+    <Compile Include="targets.fs" />
     <Compile Include="properties.fs" />
     <Compile Include="project.fs" />
   </ItemGroup>

@@ -24,7 +24,7 @@ module Program =
         args 
         |> Args.parse
         |> Solution.load
-        |> Filters.apply filters
+        |> Targets.extract filters
         |> Project.generate properties
 
         0

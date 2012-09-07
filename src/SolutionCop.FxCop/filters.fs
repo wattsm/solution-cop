@@ -13,6 +13,3 @@ module Filters =
 
     let parse (args : string []) = 
         { Includes = []; Excludes = []; }
-
-    let apply settings solution = 
-        solution
