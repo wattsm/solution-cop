@@ -6,10 +6,12 @@ open System.Collections
 [<AutoOpen>]
 module List = 
 
+    ///True if a list contains a given value
     let contains value list = 
         list
         |> List.exists ((=) value) 
 
+    ///True if two lists contain the same values
     let same list1 list2 = 
         if (List.length list1) <> (List.length list2) then 
             false
@@ -19,6 +21,7 @@ module List =
             |> List.length
             |> ((=) 0)
 
+    ///Converts a vanilla IEnumerable to a list of a given type
     let ofEnumerable<'a> (enumerable : IEnumerable) =
         
         let rec collect (enumerator : IEnumerator) = 
