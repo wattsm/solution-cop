@@ -16,7 +16,8 @@ module ``Given an XML node representing a Visual Studio project property group``
     let read (name : string) = 
         Embedded.xml "configuration-data.xml"
         |> toContext
-        |> selectSingle (String.Format ("//examples/example[@name='{0}']/PropertyGroup", name))
+        |> Schema.register
+        |> selectSingle (String.Format ("//examples/example[@name='{0}']/{1}", name, (Schema.prefix "PropertyGroup")))
         |> Configuration.read
 
     module ``And the configuration name and platform are present in the Condition attribute`` =

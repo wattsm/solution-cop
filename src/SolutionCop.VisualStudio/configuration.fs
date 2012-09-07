@@ -27,15 +27,15 @@ module Configuration =
 
     ///Gets the output path for a configuration
     let private path = 
-        tryGet "OutputPath" "output path"
+        tryGet (Schema.prefix "OutputPath") "output path"
 
     ///Gets the platform for a configuration
     let private platformTarget =
-        tryGet "PlatformTarget" "platform"
+        tryGet (Schema.prefix "PlatformTarget") "platform"
 
     ///Gets the name for a configuration
     let private configurationName = 
-        tryGet "ConfigurationName" "configuration name"
+        tryGet (Schema.prefix "ConfigurationName") "configuration name"
 
     ///Active pattern matching an XML node with a condition attribute containing both configuration name and platform
     let private (|NameAndPlatform|_|) (condition : string) = 

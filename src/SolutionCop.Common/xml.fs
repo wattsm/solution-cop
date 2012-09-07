@@ -25,14 +25,26 @@ module Xml =
 
     ///Registers a namespace with the context's namespace manager
     let register prefix uri context = 
-        context.Namespaces.AddNamespace (prefix, uri)
+        if not (context.Namespaces.HasNamespace (prefix)) then
+            context.Namespaces.AddNamespace (prefix, uri)
+
         context
+
+    ///Clears any registered namespace prefixes
+    let clearPrefixes context = 
+        { context with Namespaces = XmlNamespaceManager (context.Node.OwnerDocument.NameTable) }
 
     ///Selects a single node
     let selectSingle xpath context = 
         match context.Node.SelectSingleNode (xpath, context.Namespaces) with
         | null -> raise (XPathQueryException (xpath))
         | node -> { context with Node = node; }
+
+    ///Selects multiple notes
+    let selectMany xpath context = 
+        context.Node.SelectNodes (xpath, context.Namespaces)
+        |> List.ofEnumerable
+        |> List.map (fun node -> { Node = node; Namespaces = context.Namespaces; })
 
     ///Get the value of a named attribute
     let getAttribute (name : string) context = 

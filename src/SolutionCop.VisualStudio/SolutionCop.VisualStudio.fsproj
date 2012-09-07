@@ -50,6 +50,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="common.fs" />
     <Compile Include="configuration.fs" />
     <Compile Include="project.fs" />
     <Compile Include="solution.fs" />

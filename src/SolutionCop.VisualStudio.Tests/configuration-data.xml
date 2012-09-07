@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <examples>
   <example name="configuration-and-platform">
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
       <DebugSymbols>true</DebugSymbols>
       <DebugType>full</DebugType>
       <Optimize>false</Optimize>
@@ -13,7 +13,7 @@
     </PropertyGroup>
   </example>
   <example name="configuration-only">
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' " xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
       <DebugSymbols>true</DebugSymbols>
       <DebugType>full</DebugType>
       <Optimize>false</Optimize>
@@ -26,7 +26,7 @@
     </PropertyGroup>
   </example>
     <example name="platform-only">
-    <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' " xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
       <DebugSymbols>true</DebugSymbols>
       <DebugType>full</DebugType>
       <Optimize>false</Optimize>
