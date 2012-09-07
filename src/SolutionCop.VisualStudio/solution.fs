@@ -25,15 +25,20 @@ module Solution =
         >> List.map (groupAt 1)   
 
     ///Loads projects referenced by the given solution file contents
-    let private projects solution = 
+    let private projects directory solution = 
         getProjectPaths solution
-        |> List.map Project.load
+        |> List.map ((combine directory) >> Project.load)
 
     ///Loads the VS solution identified in the given settings
     let load (settings : Args.Settings) = 
+
+        let directory = directoryOf settings.Path
+        let filename = nameOf settings.Path
+        let contents = contentsOf settings.Path
+
         {
-            Directory = (directoryOf settings.Path);
-            FileName = (nameOf settings.Path);
-            Projects = (contentsOf settings.Path |> projects);
+            Directory = directory;
+            FileName = filename;
+            Projects = (projects directory contents);
         }
         
