@@ -41,9 +41,11 @@
     <None Include="app.config" />
     <EmbeddedResource Include="configuration-data.xml" />
     <EmbeddedResource Include="project-data.xml" />
+    <EmbeddedResource Include="solution-data.xml" />
     <Compile Include="embedded.fs" />
     <Compile Include="configuration.fs" />
     <Compile Include="project.fs" />
+    <Compile Include="solution.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsUnit.CustomMatchers">

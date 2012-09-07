@@ -3,6 +3,7 @@
 open System
 open SolutionCop.Common
 open SolutionCop.Common.IO
+open SolutionCop.Common.Regex
 
 [<RequireQualifiedAccess>]
 module Solution = 
@@ -19,8 +20,9 @@ module Solution =
     }
 
     ///Reads project paths from the given solution file contents
-    let getProjectPaths solution = 
-        []
+    let getProjectPaths = 
+        (matches ",(\\s?)\"((.+?)\\.(fsproj|csproj))\"")  
+        >> List.map (groupAt 1)   
 
     ///Loads projects referenced by the given solution file contents
     let private projects solution = 
