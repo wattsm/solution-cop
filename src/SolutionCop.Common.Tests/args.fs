@@ -2,71 +2,82 @@
 
 open System
 open SolutionCop.Common
+open SolutionCop.Common.Args
 open FsUnit.Xunit
 open Xunit
 
 module ``Given a string of command line arguments`` = 
 
-    let args = [| "-sln:'C:\MySolution\MySolution.sln'"; "-configuration:Debug"; "-platform:AnyCPU"; |]
+    let args = [| "-sln:C:\MySolution\MySolution.sln"; "-configuration:Debug"; "-platform:AnyCPU"; "-include:^Start"; "-exclude:End$";  |]
+    let targetSettings = { Configuration = "Debug"; Platform = "AnyCPU"; Include = [ "^Start"; ]; Exclude = [ "End$"; ]; }
 
-    module ``And one or more more mandatory settings are not included`` =
+    let argsWithout index = 
+        args
+        |> Array.mapi (fun i arg -> if i = index then None else Some arg)
+        |> Array.choose id
 
-        type ``When the argument list is parsed`` () = 
+    let replaceArg index arg = 
+        args
+        |> Array.mapi (fun i arg' -> if i = index then arg else arg')
 
-            [<Fact>] member test.
-                ``Then a MissingSettingException is thrown if the path is not included`` () =
-                    let
-                        args' = args.[1..2]
-                    in
-                        (fun () -> Args.parse args' |> ignore) |> should throw typedefof<Args.MissingSettingException>
-
-            [<Fact>] member test.
-                ``Then a MissingSettingException is thrown if the configuration is not included`` () = 
-                    let 
-                        args' = [| args.[0]; args.[2] |]
-                    in
-                        (fun () -> Args.parse args' |> ignore) |> should throw typedefof<Args.MissingSettingException>
+    module ``And the solution argument is missing`` =
+        
+        type ``When getFileName is called`` () = 
 
             [<Fact>] member test.
-                ``Then a MissingSettingException is thrown if the platform is not included`` () = 
-                    let
-                        args' = args.[0..1]
-                    in
-                        (fun () -> Args.parse args' |> ignore) |> should throw typedefof<Args.MissingSettingException>
+                ``Then a MissingSettingException is thrown`` () =
+                    (fun () -> argsWithout 0 |> getFileName |> ignore) |> should throw typedefof<MissingSettingException>
 
+    module ``And the configuration argument is missing`` =
 
-    module ``And all mandatory settings are included`` = 
-
-        type ``When the argument list is parsed`` () =            
-
-            let path (settings : Args.Settings) = settings.Path
-            let configuration (settings : Args.Settings) = settings.Configuration
-            let platform (settings : Args.Settings) = settings.Platform            
+        type ``When getTargetSettings is called`` () = 
 
             [<Fact>] member test.
-                ``Then the path is parsed correctly (single quotes)`` () = 
-                    Args.parse args |> path |> should equal "C:\MySolution\MySolution.sln"
+                ``Then a MissingSettingException is thrown`` () = 
+                    (fun () -> argsWithout 1 |> getTargetSettings |> ignore) |> should throw typedefof<MissingSettingException>
+
+    module ``And the platform argument is missing`` =
+
+        type ``When getTargetSettings is called`` () = 
 
             [<Fact>] member test.
-                ``Then the path is parsed correctly (double quotes)`` () =
-                    let
-                        args' = 
-                            [| "-sln:\"C:\MySolution\MySolution.sln\""; args.[1]; args.[2]; |]
-                    in
-                        Args.parse args |> path |> should equal "C:\MySolution\MySolution.sln"
+                ``Then a MissingSettingException is thrown`` () =
+                    (fun () -> argsWithout 2 |> getTargetSettings |> ignore) |> should throw typedefof<MissingSettingException>
+
+    module ``And all arguments are supplied`` =
+
+        type ``When getFileName is called`` () = 
+            
+            [<Fact>] member test.
+                ``Then the correct value is returned`` () =
+                    args |> getFileName |> should equal @"C:\MySolution\MySolution.sln"
 
             [<Fact>] member test.
-                ``Then the path is parsed correctly (no quotes)`` () = 
-                    let 
-                        args' =
-                            [| "-sln:C:\MySolution\MySolution.sln"; args.[1]; args.[2]; |]
-                    in
-                        Args.parse args |> path |> should equal "C:\MySolution\MySolution.sln"
+                ``Then double quotation marks are parsed correctly`` () = 
+                    replaceArg 0 "-sln:\"C:\MySolution\MySolution.sln\"" |> getFileName |> should equal @"C:\MySolution\MySolution.sln"
 
             [<Fact>] member test.
-                ``Then the configuration is parsed correctly`` () =
-                    Args.parse args |> configuration |> should equal "Debug"
+                ``The single quotation marks are parsed correctly`` () = 
+                    replaceArg 0 "-sln:'C:\MySolution\MySolution.sln'" |> getFileName |> should equal @"C:\MySolution\MySolution.sln"
+
+        type ``When getTargetSettings is called`` () = 
+            
+            [<Fact>] member test.
+                ``Then the correct value is returned`` () = 
+                    args |> getTargetSettings |> should equal targetSettings
 
             [<Fact>] member test.
-                ``Then the platform is parsed correctly`` () =
-                    Args.parse args |> platform |> should equal "AnyCPU"        
+                ``Then double quotation marks on includes are parsed correctly`` () = 
+                    replaceArg 3 "-include:\"^Start\"" |> getTargetSettings |> should equal targetSettings
+
+            [<Fact>] member test.
+                ``The single quotation marks on includes are parsed correctly`` () = 
+                    replaceArg 3 "-include:'^Start'" |> getTargetSettings |> should equal targetSettings
+
+            [<Fact>] member test.
+                ``Then double quotation marks on excludes are parsed correctly`` () = 
+                    replaceArg 4 "-exclude:\"End$\"" |> getTargetSettings |> should equal targetSettings
+
+            [<Fact>] member test.
+                ``The single quotation marks on excludes are parsed correctly`` () = 
+                    replaceArg 4 "-exclude:'End$'" |> getTargetSettings |> should equal targetSettings

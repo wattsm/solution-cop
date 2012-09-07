@@ -30,11 +30,11 @@ module Solution =
         |> List.map ((combine directory) >> Project.load)
 
     ///Loads the VS solution identified in the given settings
-    let load (settings : Args.Settings) = 
+    let load path = 
 
-        let directory = directoryOf settings.Path
-        let filename = nameOf settings.Path
-        let contents = contentsOf settings.Path
+        let directory = directoryOf path
+        let filename = nameOf path
+        let contents = contentsOf path
 
         {
             Directory = directory;

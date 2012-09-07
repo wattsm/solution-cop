@@ -15,16 +15,16 @@ module Program =
     [<EntryPoint>]
     let main args = 
 
-        let filters = 
-            Filters.parse args
+        let targetSettings = 
+            Args.getTargetSettings args
 
-        let properties = 
-            Properties.parse args
+        let outputSettings = 
+            Args.getOutputSettings args
 
         args 
-        |> Args.parse
+        |> Args.getFileName
         |> Solution.load
-        |> Targets.extract filters
-        |> Project.generate properties
+        |> Targets.extract targetSettings
+        |> Project.generate outputSettings
 
         0
