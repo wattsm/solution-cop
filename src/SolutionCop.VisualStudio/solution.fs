@@ -18,11 +18,20 @@ module Solution =
         Projects : Project.Data list;
     }
 
-    ///Reads a VS solution from the given solution file contents
-    let read str = 
-        { Directory = ""; FileName = ""; Projects = []; }
+    ///Reads project paths from the given solution file contents
+    let getProjectPaths solution = 
+        []
+
+    ///Loads projects referenced by the given solution file contents
+    let private projects solution = 
+        getProjectPaths solution
+        |> List.map Project.load
 
     ///Loads the VS solution identified in the given settings
     let load (settings : Args.Settings) = 
-        contentsOf settings.Path
-        |> read
+        {
+            Directory = (directoryOf settings.Path);
+            FileName = (nameOf settings.Path);
+            Projects = (contentsOf settings.Path |> projects);
+        }
+        

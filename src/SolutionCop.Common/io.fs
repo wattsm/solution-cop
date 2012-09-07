@@ -15,6 +15,11 @@ module IO =
         let info = FileInfo (path)
         info.DirectoryName
 
+    ///Gets the name of the file at the given path
+    let nameOf path = 
+        let info = FileInfo (path)
+        info.Name
+
     ///Combines two paths, first being the root
     let combine root leaf = 
 
