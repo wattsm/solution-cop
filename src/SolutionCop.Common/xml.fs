@@ -14,7 +14,7 @@ module Xml =
     type XmlContext = {
         Node : XmlNode;
         Namespaces : XmlNamespaceManager;
-    }
+    }    
 
     ///Converts an XML document to an XML context
     let toContext (xml : XmlDocument) = 
@@ -22,6 +22,15 @@ module Xml =
             Node = xml.DocumentElement;
             Namespaces = XmlNamespaceManager (xml.NameTable)
         }
+
+    ///Parses an XML context from the given string
+    let parse str = 
+        
+        let xml = XmlDocument ()
+        xml.LoadXml (str)
+
+        xml
+        |> toContext
 
     ///Registers a namespace with the context's namespace manager
     let register prefix uri context = 

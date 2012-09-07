@@ -2,6 +2,7 @@
 
 open System
 open SolutionCop.Common.Xml
+open SolutionCop.Common.IO
 
 [<RequireQualifiedAccess>]
 module Project = 
@@ -69,3 +70,8 @@ module Project =
             Configurations = (configurations context);
             ReferencePaths = (references context);
         }
+
+    ///Reads a project from a path on disk
+    let load = 
+        contentsOf >> parse >> read
+        
