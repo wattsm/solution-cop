@@ -25,6 +25,6 @@ module Program =
         |> Args.getFileName
         |> Solution.load
         |> Targets.extract targetSettings
-        |> Project.generate outputSettings
+        |> Project.create outputSettings
 
         0

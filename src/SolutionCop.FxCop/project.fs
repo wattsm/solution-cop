@@ -50,9 +50,13 @@ module Project =
 
     ///Gets the project name
     let private name (settings : Args.OutputSettings) = 
-        settings.FileName.Substring (0, settings.FileName.Length - 1)
+        settings.FileName.Substring (0, settings.FileName.IndexOf (".fxcop"))
+
+    ///Condenses the given path by using the $(ProjectDir) placeholder
+    let private condense (settings : Args.OutputSettings) (path : String) = 
+        path.Replace (settings.Directory, "$(ProjectDir)")
     
-    ///Generates an FxCop project file based on the given settings
+    ///Generates an FxCop project file based on the given settings and targets
     let generate (settings : Args.OutputSettings) targets =
 
         let appendTargets context = 
@@ -61,7 +65,7 @@ module Project =
 
                 let attrs =
                     [
-                        ("Name", path); 
+                        ("Name", condense settings path); 
                         ("Analyze", "True"); 
                         ("AnalyzeAllChildren", "True");
                     ]
@@ -76,18 +80,28 @@ module Project =
 
             let appendReferencePath context' path = 
                 context'
-                |> appendContent "//FxCopProject/Targets/AssemblyReferenceDirectories" "Directory" path
+                |> appendContent "//FxCopProject/Targets/AssemblyReferenceDirectories" "Directory" (condense settings path)
 
             targets.ReferencePaths
-            |> List.fold appendReferencePath context
+            |> Seq.map directoryOf
+            |> Seq.distinct
+            |> Seq.fold appendReferencePath context
 
         let appendName context = 
             context
-            |> appendAttribute "//FxCopProject" "Name" (name settings)
+            |> appendAttribute "//FxCopProject" "Name" (name settings)        
         
         template settings
         |> appendName
         |> appendTargets
         |> appendReferencePaths      
-        |> save ""  
+
+    ///Creates an FxCop project file based on the given settings and targets
+    let create (settings : Args.OutputSettings) targets =
+
+        let filename = 
+            combine settings.Directory settings.FileName
+
+        generate settings targets
+        |> save filename
 
