@@ -2,6 +2,7 @@
 
 open System
 open SolutionCop.Common.Regex
+open SolutionCop.Common.IO
 
 module Args = 
 
@@ -59,6 +60,7 @@ module Args =
 
     ///Record for FxCop output settings
     type OutputSettings = {
+        Directory : String;
         FileName : String;
         BasedOn : String;
     }
@@ -78,7 +80,8 @@ module Args =
 
     ///Gets the output settings from the given argument list
     let getOutputSettings (args : string []) =   
-        { 
+        {
+            Directory = (directoryOf (getSetting "sln" true args));
             FileName = (getSetting "name" false args);  
             BasedOn = (getSetting "based-on" false args); 
         }

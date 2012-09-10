@@ -10,7 +10,7 @@ module ``Given a string of command line arguments`` =
 
     let args = [| "-sln:C:\MySolution\MySolution.sln"; "-configuration:Debug"; "-platform:AnyCPU"; "-include:^Start"; "-exclude:End$"; "-name:New.fxcop"; "-based-on:C:\MySolution\Old.fxcop"; |]
     let targetSettings = { Configuration = "Debug"; Platform = "AnyCPU"; Include = [ "^Start"; ]; Exclude = [ "End$"; ]; }
-    let outputSettings = { FileName = "New.fxcop"; BasedOn = @"C:\MySolution\Old.fxcop"; }
+    let outputSettings = { Directory = @"C:\MySolution"; FileName = "New.fxcop"; BasedOn = @"C:\MySolution\Old.fxcop"; }
 
     let argsWithout index = 
         args
