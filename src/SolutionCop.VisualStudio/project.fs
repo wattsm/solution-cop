@@ -4,7 +4,6 @@ open System
 open SolutionCop.Common.Xml
 open SolutionCop.Common.IO
 
-[<RequireQualifiedAccess>]
 module Project = 
 
     ///Exception used to describe an invalid project file

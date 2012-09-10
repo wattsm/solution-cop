@@ -15,6 +15,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SolutionCop.Common.Tests", 
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SolutionCop.VisualStudio.Tests", "SolutionCop.VisualStudio.Tests\SolutionCop.VisualStudio.Tests.fsproj", "{1993A68C-C325-48FA-9047-F238DFCF0624}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SolutionCop.FxCop.Tests", "SolutionCop.FxCop.Tests\SolutionCop.FxCop.Tests.fsproj", "{0659BC78-AFC2-4BEF-8CBD-9B0526EF7AE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{1993A68C-C325-48FA-9047-F238DFCF0624}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1993A68C-C325-48FA-9047-F238DFCF0624}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1993A68C-C325-48FA-9047-F238DFCF0624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0659BC78-AFC2-4BEF-8CBD-9B0526EF7AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0659BC78-AFC2-4BEF-8CBD-9B0526EF7AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0659BC78-AFC2-4BEF-8CBD-9B0526EF7AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0659BC78-AFC2-4BEF-8CBD-9B0526EF7AE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +58,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{414137EF-2375-4EFE-AD0D-EE9313524DB9} = {C3CD3EE8-F20D-4C72-A43A-05A9851C8E2F}
 		{1993A68C-C325-48FA-9047-F238DFCF0624} = {C3CD3EE8-F20D-4C72-A43A-05A9851C8E2F}
+		{0659BC78-AFC2-4BEF-8CBD-9B0526EF7AE1} = {C3CD3EE8-F20D-4C72-A43A-05A9851C8E2F}
 	EndGlobalSection
 EndGlobal

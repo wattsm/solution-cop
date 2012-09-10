@@ -4,7 +4,6 @@ open System
 open SolutionCop.Common.Xml
 open SolutionCop.Common.Regex
 
-[<RequireQualifiedAccess>]
 module Configuration = 
 
     ///Exception describing an invalid project configuration

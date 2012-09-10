@@ -5,7 +5,6 @@ open SolutionCop.Common
 open SolutionCop.Common.IO
 open SolutionCop.Common.Regex
 
-[<RequireQualifiedAccess>]
 module Solution = 
 
     ///Exception describing an invalid solution file
