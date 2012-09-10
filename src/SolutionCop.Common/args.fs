@@ -80,8 +80,22 @@ module Args =
 
     ///Gets the output settings from the given argument list
     let getOutputSettings (args : string []) =   
+
+        let directory = (directoryOf (getSetting "sln" true args))
+
+        let filename = 
+            match (getSetting "name" false args) with
+            | "" -> 
+            
+                let solutionFileName =
+                    (nameOf (getSetting "sln" false args))
+
+                solutionFileName.Replace (".sln", ".fxcop")
+
+            | name -> name
+
         {
-            Directory = (directoryOf (getSetting "sln" true args));
-            FileName = (getSetting "name" false args);  
+            Directory = directory;
+            FileName = filename;  
             BasedOn = (getSetting "based-on" false args); 
         }

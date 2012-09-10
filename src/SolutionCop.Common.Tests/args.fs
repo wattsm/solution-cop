@@ -90,6 +90,10 @@ module ``Given a string of command line arguments`` =
                     args |> getOutputSettings |> should equal outputSettings
 
             [<Fact>] member test.
+                ``Then the solution file name is used if no name is specified`` () =
+                    argsWithout 5 |> getOutputSettings |> should equal { outputSettings with FileName = "MySolution.fxcop"; }
+
+            [<Fact>] member test.
                 ``Then single quotation marks on based-on are parsed correctly`` () = 
                     replaceArg 6 "-based-on:'C:\MySolution\Old.fxcop'" |> getOutputSettings |> should equal outputSettings
 
