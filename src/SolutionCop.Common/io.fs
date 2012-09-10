@@ -10,6 +10,11 @@ module IO =
         use reader = File.OpenText (path)
         reader.ReadToEnd ()
 
+    ///Reads all of the given stream as s string
+    let readAll (stream : Stream) = 
+        use reader = new StreamReader (stream)
+        reader.ReadToEnd ()
+
     ///Gets the full directory path of a given file
     let directoryOf path =         
         let info = FileInfo (path)
@@ -31,3 +36,12 @@ module IO =
 
         uri.LocalPath
         |> Path.GetFullPath
+
+    ///Writes the given string to disk at the path specified. Any existing file will be deleted.
+    let toDisk path (contents : string) = 
+        
+        if (File.Exists path) then
+            File.Delete path
+
+        use writer = File.CreateText path
+        writer.Write contents

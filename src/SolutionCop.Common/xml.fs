@@ -3,6 +3,7 @@
 open System
 open System.Xml
 open System.Xml.XPath
+open SolutionCop.Common.IO
 
 module Xml = 
 
@@ -72,3 +73,95 @@ module Xml =
     ///Gets the value of the node identified by the xpath query
     let selectSingleValue xpath = 
         (selectSingle xpath) >> toValue
+
+    ///Removes child nodes of the node(s) identified by the given xpath query based on name
+    let removeChildren xpath name context = 
+
+        let remove context' = 
+            match (selectMany name context') with
+            | [] -> () 
+            | cs ->
+                cs
+                |> List.iter (fun c -> 
+                        context'.Node.RemoveChild c.Node
+                        |> ignore                         
+                    )
+
+        selectMany xpath context 
+        |> List.iter remove
+
+        context
+
+    ///Removes a named attribute from the node(s) identified by the given xpath query
+    let removeAttribute xpath name context = 
+        selectMany xpath context
+        |> List.iter (fun context' -> 
+                context'.Node.Attributes.RemoveNamedItem name
+                |> ignore
+            )
+
+        context
+
+    ///Appends an attribute with the given name and value to the node(s) matching the given xpath query
+    let appendAttribute xpath name value context = 
+        
+        let append context' = 
+            
+            let attr = context'.Node.OwnerDocument.CreateAttribute name
+            attr.Value <- value
+
+            context'.Node.Attributes.Append attr
+            |> ignore
+
+        selectMany xpath context
+        |> List.iter append
+
+        context
+
+    ///Appends a child element with the given name and attributes to the node(s) matching the given xpath query
+    let appendChild xpath name attrs context = 
+        
+        let append context' = 
+            
+            let child = context'.Node.OwnerDocument.CreateElement name
+
+            attrs
+            |> List.iter (fun (name, value) ->
+
+                    let attr = context'.Node.OwnerDocument.CreateAttribute name
+                    attr.Value <- value
+
+                    child.Attributes.Append attr
+                    |> ignore
+                )
+
+            context'.Node.AppendChild child
+            |> ignore
+
+        selectMany xpath context
+        |> List.iter append
+
+        context
+
+    ///Appends a content node to the node(s) matching the given xpath query
+    let appendContent xpath name value context = 
+        
+        let append context' = 
+
+            let child = context'.Node.OwnerDocument.CreateElement name
+            child.InnerText <- value
+
+            context'.Node.AppendChild child
+            |> ignore
+
+        selectMany xpath context
+        |> List.iter append
+
+        context
+
+    ///Saves the context to disk
+    let save path context = 
+        context.Node.OuterXml
+        |> toDisk path
+    
+            

@@ -37,7 +37,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition=" Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')" />
   <ItemGroup>
-    <EmbeddedResource Include="template-default.fxcop" />
+    <EmbeddedResource Include="default.fxcop" />
     <Compile Include="targets.fs" />
     <Compile Include="project.fs" />
   </ItemGroup>
