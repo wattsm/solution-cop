@@ -38,3 +38,8 @@ module Regex =
         match (matchesAt pattern [index] input) with
         | Some values -> Some (List.head values)
         | _ -> None
+
+    ///True if the given input matches at least one of the provided patterns. Returns true when no patterns provided.
+    let matchesAny patterns input = 
+        patterns
+        |> List.exists (fun pattern -> Regex.IsMatch (input, pattern, RegexOptions.IgnoreCase))
