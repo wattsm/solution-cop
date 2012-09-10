@@ -60,6 +60,7 @@ module Args =
     ///Record for FxCop output settings
     type OutputSettings = {
         FileName : String;
+        BasedOn : String;
     }
 
     ///Gets the solution file name from the given argument list
@@ -77,4 +78,7 @@ module Args =
 
     ///Gets the output settings from the given argument list
     let getOutputSettings (args : string []) =   
-        { FileName = ""; }
+        { 
+            FileName = (getSetting "name" false args);  
+            BasedOn = (getSetting "based-on" false args); 
+        }

@@ -8,8 +8,9 @@ open Xunit
 
 module ``Given a string of command line arguments`` = 
 
-    let args = [| "-sln:C:\MySolution\MySolution.sln"; "-configuration:Debug"; "-platform:AnyCPU"; "-include:^Start"; "-exclude:End$";  |]
+    let args = [| "-sln:C:\MySolution\MySolution.sln"; "-configuration:Debug"; "-platform:AnyCPU"; "-include:^Start"; "-exclude:End$"; "-name:New.fxcop"; "-based-on:C:\MySolution\Old.fxcop"; |]
     let targetSettings = { Configuration = "Debug"; Platform = "AnyCPU"; Include = [ "^Start"; ]; Exclude = [ "End$"; ]; }
+    let outputSettings = { FileName = "New.fxcop"; BasedOn = @"C:\MySolution\Old.fxcop"; }
 
     let argsWithout index = 
         args
@@ -81,3 +82,17 @@ module ``Given a string of command line arguments`` =
             [<Fact>] member test.
                 ``The single quotation marks on excludes are parsed correctly`` () = 
                     replaceArg 4 "-exclude:'End$'" |> getTargetSettings |> should equal targetSettings
+
+        type ``When getOutputSettings is called`` () =
+
+            [<Fact>] member test.
+                ``Then the correct value is returned`` () = 
+                    args |> getOutputSettings |> should equal outputSettings
+
+            [<Fact>] member test.
+                ``Then single quotation marks on based-on are parsed correctly`` () = 
+                    replaceArg 6 "-based-on:'C:\MySolution\Old.fxcop'" |> getOutputSettings |> should equal outputSettings
+
+            [<Fact>] member test.
+                ``Then double quotation marks on based-on are parsed correctly`` () =
+                    replaceArg 6 "-based-on:\"C:\MySolution\Old.fxcop\"" |> getOutputSettings |> should equal outputSettings
