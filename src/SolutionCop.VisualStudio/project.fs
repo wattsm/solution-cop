@@ -14,7 +14,8 @@ module Project =
 
     ///Record modelling the basic data relevant data in a VS project
     type Data = {
-        FileName : String;
+        Directory : String;
+        FileName : String;        
         Configurations : Configuration.Data list;
         ReferencePaths : String list;
     }
@@ -63,17 +64,22 @@ module Project =
             | :? XPathQueryException as e -> raise (InvalidProjectException (e))
         
     ///Reads a project from an XML node
-    let read context = 
+    let read directory context = 
         {
+            Directory = directory;
             FileName = (filename context);
             Configurations = (configurations context);
             ReferencePaths = (references context);
         }
 
     ///Reads a project from a path on disk
-    let load = 
-        contentsOf 
-        >> parse 
-        >> Schema.register 
-        >> read
+    let load path = 
+
+        let directory = 
+            directoryOf path
+
+        contentsOf path
+        |> parse
+        |> Schema.register
+        |> (read directory)
         
