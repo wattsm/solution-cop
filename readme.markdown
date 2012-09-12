@@ -1,6 +1,10 @@
+#### SolutionCop
+================
+
 A tool written in F# which generates FxCop project files for Visual Studio solutions (optionally based on an existing FxCop project).
 
-Basic syntax:
+#### Basic syntax
+
 solutioncop.exe -sln:"C:\MySolution\MySolution.sln" -configuration:Debug -platform:AnyCPU
 
 Targets can optionally be included or excluded based on regular expressions using the -include and -exclude switches, e.g.
