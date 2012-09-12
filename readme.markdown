@@ -8,13 +8,19 @@ solutioncop.exe -sln:"C:\MySolution\MySolution.sln" -configuration:Debug -platfo
 
 Targets can optionally be included or excluded based on regular expressions using the -include and -exclude switches, e.g.
 
+### Including and excluding targets
+
 solutioncop.exe ... -include:"\.MyCompany\."
 
 Multiple include/exclude switches can be used. Any target matching one or more include will be selected, while those that match one or more exclude will be ignored.
 
+### Naming
+
 The resulting project can be named using the -name switch, e.g.
 
 solutioncop.exe ... -name:Analysis.fxcop
+
+### Templates
 
 An existing FxCop project can be used as a template by using the -based-on switch, eg..
 
