@@ -6,9 +6,9 @@ A tool written in F# which generates FxCop project files for Visual Studio solut
 
 solutioncop.exe -sln:"C:\MySolution\MySolution.sln" -configuration:Debug -platform:AnyCPU
 
-Targets can optionally be included or excluded based on regular expressions using the -include and -exclude switches, e.g.
-
 ### Including and excluding targets
+
+Targets can optionally be included or excluded based on regular expressions using the -include and -exclude switches, e.g.
 
 solutioncop.exe ... -include:"\.MyCompany\."
 
