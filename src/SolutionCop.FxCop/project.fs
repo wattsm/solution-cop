@@ -50,7 +50,10 @@ module Project =
 
     ///Gets the project name
     let private name (settings : Args.OutputSettings) = 
-        settings.FileName.Substring (0, settings.FileName.IndexOf (".fxcop"))
+        if (settings.FileName.Contains (".fxcop")) then
+            settings.FileName.Substring (0, settings.FileName.IndexOf (".fxcop"))
+        else
+            settings.FileName
 
     ///Condenses the given path by using the $(ProjectDir) placeholder
     let private condense (settings : Args.OutputSettings) (path : String) = 

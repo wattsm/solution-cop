@@ -24,7 +24,12 @@ module Project =
     let private configurations context = 
         context
         |> selectMany (Schema.prefix "PropertyGroup[@Condition]")
-        |> List.map Configuration.read
+        |> List.choose (fun context' -> 
+                try 
+                    Some (Configuration.read context')
+                with
+                | :? Configuration.InvalidConfigurationException -> None                
+            )
 
     ///Reads project reference hint paths from an XML node
     let private references context = 
