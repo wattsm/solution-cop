@@ -37,6 +37,8 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>bin\Release\SolutionCop.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
+    <StartArguments>
+    </StartArguments>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

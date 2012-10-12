@@ -41,7 +41,7 @@ module Configuration =
 
         let values = 
             condition
-            |> matchesAt "\\s+'\\$\\(Configuration\\)\\|\\$\\(Platform\\)' == '(.+?)\\|(.+?)'\\s+" [ 0; 1; ]
+            |> matchesAt "\\s?'\\$\\(Configuration\\)\\|\\$\\(Platform\\)' == '(.+?)\\|(.+?)'\\s?" [ 0; 1; ]
 
         match values with
         | Some (config::platform::_) -> Some (config, platform)
@@ -50,12 +50,12 @@ module Configuration =
     ///Active pattern matching an XML node with a condition attribute containing only the configuration name
     let private (|NameOnly|_|) (condition : string) = 
         condition
-        |> matchAt "\\s+'\\$\\(Configuration\\)' == '(.+?)'\\s+" 0
+        |> matchAt "\\s?'\\$\\(Configuration\\)' == '(.+?)'\\s?" 0
 
     ///Active pattern matching an XML node with a condition attribute containing only the platform
     let private (|PlatformOnly|_|) (condition : string) = 
         condition
-        |> matchAt "\\s+'\\$\\(Platform\\)' == '(.+?)'\\s+" 0
+        |> matchAt "\\s?'\\$\\(Platform\\)' == '(.+?)'\\s?" 0
 
     ///Reads a configuration from an XML node
     let read context = 
