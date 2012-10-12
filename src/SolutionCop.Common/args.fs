@@ -92,7 +92,11 @@ module Args =
 
                 solutionFileName.Replace (".sln", ".fxcop")
 
-            | name -> name
+            | name -> 
+                if (name.EndsWith (".fxcop", StringComparison.OrdinalIgnoreCase)) then            
+                    name
+                else 
+                    String.Format ("{0}.fxcop", name)
 
         {
             Directory = directory;
